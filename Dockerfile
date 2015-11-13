@@ -13,11 +13,9 @@ RUN apt-get update && \
 RUN ln -sf /dev/stdout /var/log/nginx/access.log
 RUN ln -sf /dev/stderr /var/log/nginx/error.log
 
-COPY public /usr/share/nginx/www
-
 # Define mountable directories.
-VOLUME ["/var/cache/nginx", "/etc/nginx/certs", "/var/log/nginx"]
-COPY config/deploy/nginx.conf /etc/nginx/conf.d/default.conf
+VOLUME ["/var/cache/nginx", "/etc/nginx/certs", "/var/log/nginx", "/usr/share/nginx/www"]
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 443
 
